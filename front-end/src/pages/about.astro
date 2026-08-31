@@ -6,7 +6,7 @@ import Baselayout from "../layouts/baselayout.astro";
   <div id="content" class="mt-20 mx-6">
     <h1 class="text-6xl">What about Glenn?</h1>
     <h2 class="text-3xl text-gray-400 font-light mb-10">
-      Its always about you, never how are you 😭
+      Its always <em>about you</em>, never <em>how are you</em> 😭
     </h2>
     <p>
       Hi I'm Glenn Freeman. I am a non-traditional student and this is my second
@@ -77,5 +77,8 @@ import Baselayout from "../layouts/baselayout.astro";
   a::after {
     content: " ↗";
     font-size: 1.1em;
+  }
+  a {
+    text-decoration: underline;
   }
 </style>
