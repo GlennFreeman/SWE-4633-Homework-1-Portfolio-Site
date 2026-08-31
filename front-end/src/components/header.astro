@@ -1,21 +1,22 @@
 ---
+import { Image } from "astro:assets";
 import NavBar from "../components/navbar.astro"
+import HeroImage from "../images/hero.webp"
 ---
-<header>
-    <div
-  class="hero min-h-screen"
-  style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);"
->
-  <div class="hero-overlay"></div>
-  <div class="hero-content text-neutral-content text-center">
-    <div class="max-w-md">
-      <h1 class="mb-5 text-5xl font-bold">Welcome</h1>
-      <p class="mb-5">
-        My name is Glenn Freeman and this is what I have done.
-      </p>
-      <button class="btn btn-primary">Contact Me</button>
+<header class="flex flex-col justify-between items-end-safe">
+    <div class="hero min-h-fit">
+        <Image src={HeroImage} alt="Hero Image" class="object-fill w-full"/>
+        <div class="hero-overlay"></div>
+        <div class="glass hero-content text-neutral-content text-center lg:rounded-4xl sm:rounded-none">
+        <div class="max-w-fit">
+            <h2 class="mt-5 text-5xl font-bold">ATLANTA, GA</h2>
+            <h3 class="mb-5 text-gray-400 font-light">GLENN.FREEMAN.BUSINESS@GMAIL.COM</h3>
+            <h1 class="mb-9 text-9xl font-bold">Glenn Freeman</h1>
+            <p class="mb-5 text-5xl ">
+                Artist, Developer, & Designer
+            </p>
+        </div>
     </div>
-  </div>
 </div>
     <NavBar />
 </header>
