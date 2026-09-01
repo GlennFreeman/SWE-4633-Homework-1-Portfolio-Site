@@ -394,6 +394,9 @@ Make elements with the HTML hidden attribute stay hidden by default.
   --color-error: #db504a;
   --color-background-1: #231123;
   --color-background-2: #252323;
+  /* derived colors */
+  --color-primary-text: oklch(from var(--color-primary) calc(l + 0.35) c h);
+  --color-accent-text: oklch(from var(--color-accent) calc(l + 0.35) c h);
 }
 
 /* general styling */
@@ -404,6 +407,10 @@ html {
     var(--color-background-1) 0%,
     var(--color-background-2) 100%
   );
+}
+
+body {
+  color: var(--color-primary-text);
 }
 
 /* component specific styling */
