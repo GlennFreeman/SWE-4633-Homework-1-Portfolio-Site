@@ -382,3 +382,16 @@ Make elements with the HTML hidden attribute stay hidden by default.
 [hidden] {
   display: none;
 }
+
+/* global vars*/
+:root {
+  /* colors generated using coolors.co */
+  --color-primary: #96616b;
+  --color-accent: #f76f8e;
+  --color-info: #62929e;
+  --color-success: #0c7c59;
+  --color-warning: #f09d51;
+  --color-error: #db504a;
+  --color-background-1: #231123;
+  --color-background-2: #252323;
+}
