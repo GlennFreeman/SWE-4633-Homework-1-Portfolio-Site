@@ -395,3 +395,15 @@ Make elements with the HTML hidden attribute stay hidden by default.
   --color-background-1: #231123;
   --color-background-2: #252323;
 }
+
+/* general styling */
+html {
+  background: var(--color-background-1);
+  background: linear-gradient(
+    357deg,
+    var(--color-background-1) 0%,
+    var(--color-background-2) 100%
+  );
+}
+
+/* component specific styling */
