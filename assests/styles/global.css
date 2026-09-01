@@ -397,6 +397,9 @@ Make elements with the HTML hidden attribute stay hidden by default.
   /* derived colors */
   --color-primary-text: oklch(from var(--color-primary) calc(l + 0.35) c h);
   --color-accent-text: oklch(from var(--color-accent) calc(l + 0.35) c h);
+  --color-background-darker: oklch(
+    from var(--color-background-2) calc(l - 0.15) c h
+  );
 }
 
 /* general styling */
@@ -414,3 +417,34 @@ body {
 }
 
 /* component specific styling */
+/* navbar */
+header nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.15) 26%,
+    rgba(235, 241, 242, 0.15) 30%,
+    rgba(227, 227, 227, 0.15) 33%
+  );
+  backdrop-filter: blur(30px);
+  justify-content: space-between;
+  li {
+    display: inline-block;
+  }
+}
+
+/* footer */
+
+/* button */
+.button {
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+  &:hover {
+    background: var(--color-accent);
+  }
+}
