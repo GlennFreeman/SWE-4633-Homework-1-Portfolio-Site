@@ -579,6 +579,10 @@ Make elements with the HTML hidden attribute stay hidden by default.
   --color-background-lighter: oklch(
     from var(--color-background-2) calc(l + 0.15) c h
   );
+  /* double derived */
+  --color-primary-text-lighter: oklch(
+    from var(--color-primary) calc(l + 0.35) calc(c - 0.05) h
+  );
 
   /* values */
   --border-width: 2px;
@@ -783,7 +787,7 @@ footer {
   }
   h1 {
     font-size: 5rem;
-    color: white;
+    color: var(--color-primary-text-lighter);
   }
   h2 {
     font-size: 3.5rem;
@@ -870,6 +874,6 @@ form {
     margin: 0.5rem 0;
     padding: 0.125rem 0.75rem;
     border-radius: 1rem;
-    border: 1px solid red;
+    border: 1px solid var(--color-error);
   }
 }
