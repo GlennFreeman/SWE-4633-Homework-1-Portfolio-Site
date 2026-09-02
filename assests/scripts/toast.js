@@ -211,7 +211,7 @@ window.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(submissionFingerprint, JSON.stringify({ status: 'sent', date: formData.timestamp }));
 
       // Green Success State
-      Toast.show('success', `Thank you, ${formData.name}! Your contact inquiry has been sent to our team.`);
+      Toast.show('success', `Thank you, ${formData.name}! Your contact inquiry has been recieved.`);
       form.reset();
 
     } catch (error) {
@@ -227,7 +227,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
 
       // Yellow Warning State for network dropouts
-      Toast.show('warn', 'Connection failed! Your form data has been safely saved locally. We will automatically retry when online.');
+      Toast.show('warn', 'Connection failed! Your form data has been safely saved locally. This form will automatically retry when online.');
       console.warn("Sync Pipeline updated offline queue record entries:", error);
     }
   });
