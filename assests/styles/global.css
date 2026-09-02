@@ -551,9 +551,9 @@ footer {
 .glass {
   background: linear-gradient(
     100deg,
-    rgba(255, 255, 255, 0.125) 29%,
-    rgba(235, 241, 242, 0.15) 30%,
-    rgba(227, 227, 227, 0.075) 35%
+    rgba(255, 255, 255, 0.25) 29%,
+    rgba(235, 241, 242, 0.5) 30%,
+    rgba(227, 227, 227, 0.25) 35%
   );
   backdrop-filter: blur(7px) saturate(200%);
 }
