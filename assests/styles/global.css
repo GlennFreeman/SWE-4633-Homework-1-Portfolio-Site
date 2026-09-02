@@ -397,6 +397,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
   /* derived colors */
   --color-primary-text: oklch(from var(--color-primary) calc(l + 0.35) c h);
   --color-accent-text: oklch(from var(--color-accent) calc(l + 0.35) c h);
+  --color-accent-darker: oklch(from var(--color-accent) calc(l - 0.15) c h);
   --color-background-darker: oklch(
     from var(--color-background-2) calc(l - 0.15) c h
   );
@@ -418,33 +419,83 @@ body {
 
 /* component specific styling */
 /* navbar */
-header nav {
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  width: 100%;
-  display: flex;
-  background: linear-gradient(
-    100deg,
-    rgba(255, 255, 255, 0.15) 26%,
-    rgba(235, 241, 242, 0.15) 30%,
-    rgba(227, 227, 227, 0.15) 33%
-  );
-  backdrop-filter: blur(30px);
-  justify-content: space-between;
-  li {
-    display: inline-block;
+header {
+  margin-bottom: 4rem;
+
+  nav {
+    --inset-margin: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0.125) 29%,
+      rgba(235, 241, 242, 0.15) 30%,
+      rgba(227, 227, 227, 0.075) 35%
+    );
+    backdrop-filter: blur(30px);
+
+    li {
+      display: inline-block;
+    }
+
+    & > a {
+      margin-left: var(--inset-margin);
+    }
+
+    ul:last-child {
+      margin-right: var(--inset-margin);
+    }
   }
 }
 
 /* footer */
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  background-color: var(--color-background-2);
+
+  aside {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    img {
+      height: 2.5rem;
+      aspect-ratio: 1/1;
+      border-radius: 3rem;
+      corner-shape: squircle;
+    }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+
+    li {
+      padding: 0 0.5rem;
+      display: inline-block;
+    }
+  }
+}
 
 /* button */
 .button {
+  --border-width: 2px;
   padding: 1rem 0.5rem;
   border-radius: 0.5rem;
+  border: var(--border-width) solid transparent;
+  text-shadow: 2px 2px 3px var(--color-background-1);
   &:hover {
     background: var(--color-accent);
+    border: var(--border-width) solid var(--color-accent-darker);
   }
 }
+
+/* hero */
