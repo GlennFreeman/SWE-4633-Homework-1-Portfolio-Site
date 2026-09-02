@@ -616,7 +616,7 @@ p {
 }
 
 main {
-  min-height: 85.25dvh; /* sized for the footer */
+  min-height: 100dvh;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-columns: minmax(0, 1fr);
