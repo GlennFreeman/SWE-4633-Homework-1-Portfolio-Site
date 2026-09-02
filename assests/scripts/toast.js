@@ -127,7 +127,7 @@ const Toast = {
    2. Form Controller & Data Pipeline Subsystems
    ========================================================================== */
 window.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('sample-form');
+  const form = document.getElementById('contact-form');
   const offlineCheckbox = document.getElementById('simulate-offline');
 
   if (!form) return;
