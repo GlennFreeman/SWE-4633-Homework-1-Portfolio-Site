@@ -65,9 +65,9 @@
         novalidate
         class="card"
       >
-        <h2>Contact Our Team</h2>
+        <h2>Contact Me!</h2>
         <p>
-          Have questions? Drop us a line below and we will get back to you
+          Have questions? Drop me a line below and I will get back to you
           shortly.
         </p>
         <section>
@@ -95,9 +95,11 @@
           <fieldset>
             <legend>What can we help you with?</legend>
             <select id="inquiry-subject" required>
-              <option value="" disabled selected>Select an option...</option>
+              <option value="" disabled hidden selected>
+                Select an option...
+              </option>
               <option value="support">Technical Support</option>
-              <option value="billing">Billing & Sales</option>
+              <option value="comission">Commisions</option>
               <option value="feedback">General Feedback</option>
             </select>
           </fieldset>
@@ -129,7 +131,7 @@
           </div>
         </section>
 
-        <button type="submit" class="button">Send Message</button>
+        <button type="submit" class="button accent">Send Message</button>
       </form>
       <!-- Container slot for incoming alerts -->
       <div id="toast-container"></div>

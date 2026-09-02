@@ -569,6 +569,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
   --color-background-2: #252323;
   /* derived colors */
   --color-primary-text: oklch(from var(--color-primary) calc(l + 0.35) c h);
+  --color-primary-darker: oklch(from var(--color-primary) calc(l - 0.35) c h);
   --color-accent-text: oklch(from var(--color-accent) calc(l + 0.35) c h);
   --color-accent-darker: oklch(from var(--color-accent) calc(l - 0.15) c h);
   --color-accent-lighter: oklch(from var(--color-accent) calc(l + 0.5) c h);
@@ -578,6 +579,9 @@ Make elements with the HTML hidden attribute stay hidden by default.
   --color-background-lighter: oklch(
     from var(--color-background-2) calc(l + 0.15) c h
   );
+
+  /* values */
+  --border-width: 2px;
 }
 
 /* general styling */
@@ -678,9 +682,19 @@ footer {
   }
 }
 
+/* utility classes */
+.glass {
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.25) 29%,
+    rgba(235, 241, 242, 0.5) 30%,
+    rgba(227, 227, 227, 0.25) 35%
+  );
+  backdrop-filter: blur(7px) saturate(200%);
+}
+
 /* button */
 .button {
-  --border-width: 2px;
   padding: 1rem 0.5rem;
   border-radius: 0.5rem;
   border: var(--border-width) solid transparent;
@@ -688,6 +702,26 @@ footer {
   &:hover {
     background: var(--color-accent);
     border: var(--border-width) solid var(--color-accent-darker);
+  }
+}
+
+.accent {
+  background: var(--color-accent);
+  border: var(--border-width) solid var(--color-accent-lighter);
+}
+
+/* card */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 0.0625rem solid var(--color-accent-lighter);
+  img {
+    max-width: fit-content;
   }
 }
 
@@ -725,31 +759,6 @@ footer {
   p {
     margin-top: 1rem;
     font-size: 2rem;
-  }
-}
-
-.glass {
-  background: linear-gradient(
-    100deg,
-    rgba(255, 255, 255, 0.25) 29%,
-    rgba(235, 241, 242, 0.5) 30%,
-    rgba(227, 227, 227, 0.25) 35%
-  );
-  backdrop-filter: blur(7px) saturate(200%);
-}
-
-/* card */
-.card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: fit-content;
-  padding: 1rem;
-  border-radius: 1rem;
-  border: 0.0625rem solid var(--color-accent-lighter);
-  img {
-    max-width: fit-content;
   }
 }
 
@@ -797,10 +806,14 @@ form {
       padding: 0 2ch;
       background: var(--color-background-lighter);
     }
-    input,
     select,
     textarea::placeholder,
     input::placeholder {
+      color: var(--color-primary-darker);
+    }
+    input,
+    option,
+    select:valid {
       color: var(--color-primary-text);
     }
   }
