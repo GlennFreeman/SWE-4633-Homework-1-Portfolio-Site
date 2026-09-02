@@ -777,11 +777,10 @@ form {
   h2 {
     font-size: 2rem;
   }
-  p {
-    font-size: 1rem;
-    color: var(--color-accent-text);
-    margin-top: -8px;
-    margin-bottom: 20px;
+  hr {
+    border-top: 1px solid var(--color-accent-lighter);
+    margin: 1rem 1rem 0.75rem;
+    width: 100%;
   }
   section {
     display: flex;
@@ -798,7 +797,7 @@ form {
   }
   fieldset {
     border: 1px solid var(--color-accent);
-    padding: 0.5rem 1rem 1rem 1rem;
+    padding: 0.5rem 1rem 1rem;
     margin: 0.25rem 0;
     input,
     select {
@@ -821,10 +820,16 @@ form {
     padding: 0 0.5rem;
   }
   .network-toggle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     background: var(--color-background-lighter);
     margin: 0.5rem 0;
     padding: 0.125rem 0.75rem;
     border-radius: 1rem;
     border: 1px solid red;
+    p {
+      margin: 0;
+    }
   }
 }
