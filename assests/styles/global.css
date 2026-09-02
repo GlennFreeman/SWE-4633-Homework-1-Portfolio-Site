@@ -383,6 +383,178 @@ Make elements with the HTML hidden attribute stay hidden by default.
   display: none;
 }
 
+/* toast stuff
+!!! all ai generated for the toast items by gemini !!! */
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* OVERRIDE USER-AGENT BROWSER POPOVER LAYER MAPPINGS CLEANLY */
+.toast-item:popover-open {
+  position: fixed !important;
+  bottom: calc(20px + var(--toast-offset, 0px)) !important;
+  right: 20px !important;
+  inset: auto 20px calc(20px + var(--toast-offset, 0px)) auto !important;
+  margin: 0 !important;
+  display: flex !important;
+  pointer-events: auto;
+  transition: bottom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toast-item {
+  background-color: #1e293b;
+  color: #ffffff;
+  padding: 16px 40px 16px 20px;
+
+  /* ENFORCE RIGID FIXED WIDTH & VARIABLE HEIGHT */
+  width: 320px;
+  max-width: 320px;
+  height: auto;
+  box-sizing: border-box;
+
+  border-radius: 8px;
+  border-left: 5px solid var(--theme-color);
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  font-family: sans-serif;
+  overflow: hidden;
+  align-items: center;
+  gap: 14px;
+  animation: toast-fade 4s linear forwards;
+}
+
+/* ==========================================================================
+   FIXED THEMING & CORRECTED BROWSER-COMPATIBLE EMBEDDED SVGs
+   ========================================================================== */
+
+/* Success Theme: Green Bar + Checkmark Icon */
+.toast-success {
+  --theme-color: var(--color-success);
+  --toast-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2310b981' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.5 12.75l6 6 9-13.5'/%3E%3C/svg%3E");
+}
+
+/* Error Theme: Red Bar + Cross/X Icon */
+.toast-error {
+  --theme-color: var(--color-error);
+  --toast-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ef4444' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
+}
+
+/* Warning Theme: Orange/Yellow Bar + Exclamation Icon */
+.toast-warn {
+  --theme-color: var(--color-warning);
+  --toast-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23f59e0b' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z'/%3E%3C/svg%3E");
+}
+
+.toast-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  background-image: var(--toast-svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ==========================================================================
+   TIMELINES & INTERACTIVE CONTROLS
+   ========================================================================== */
+
+.toast-item:hover,
+.toast-item:hover .progress-bar {
+  animation-play-state: paused;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--theme-color);
+  width: 100%;
+  transform-origin: left;
+  animation: progress-drain 4s linear forwards;
+}
+
+.toast-message {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  word-break: break-word; /* Allows long messages to wrap text downwards safely */
+}
+
+.toast-close-btn {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.toast-close-btn:hover {
+  color: #ffffff;
+}
+
+.toast-item.toast-exiting {
+  animation: toast-exit-forced 0.3s ease-in forwards !important;
+}
+
+.toast-exiting .progress-bar {
+  animation: none !important;
+  transform: scaleX(0);
+}
+
+@keyframes toast-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  6% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  94% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+}
+
+@keyframes toast-exit-forced {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+}
+
+@keyframes progress-drain {
+  0% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
 /* Here begins my css code and is not part of the reset */
 /* global vars*/
 :root {
@@ -582,8 +754,17 @@ footer {
 }
 
 /* form stuff */
+main:has(> form) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(/assests/images/horizon.png);
+  background-position: center;
+}
 
 form {
+  backdrop-filter: blur(100px) saturate(150%) brightness(75%) hue-rotate(15deg);
+  box-shadow: 3px 10px 5px rgba(0, 0, 0, 0.5);
   h2 {
     font-size: 2rem;
   }
@@ -632,177 +813,5 @@ form {
     padding: 0.125rem 0.75rem;
     border-radius: 1rem;
     border: 1px solid red;
-  }
-}
-
-/* toast stuff
-!!! all ai generated for the toast items by gemini !!! */
-#toast-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-  pointer-events: none;
-}
-
-/* OVERRIDE USER-AGENT BROWSER POPOVER LAYER MAPPINGS CLEANLY */
-.toast-item:popover-open {
-  position: fixed !important;
-  bottom: calc(20px + var(--toast-offset, 0px)) !important;
-  right: 20px !important;
-  inset: auto 20px calc(20px + var(--toast-offset, 0px)) auto !important;
-  margin: 0 !important;
-  display: flex !important;
-  pointer-events: auto;
-  transition: bottom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.toast-item {
-  background-color: #1e293b;
-  color: #ffffff;
-  padding: 16px 40px 16px 20px;
-
-  /* ENFORCE RIGID FIXED WIDTH & VARIABLE HEIGHT */
-  width: 320px;
-  max-width: 320px;
-  height: auto;
-  box-sizing: border-box;
-
-  border-radius: 8px;
-  border-left: 5px solid var(--theme-color);
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-  font-family: sans-serif;
-  overflow: hidden;
-  align-items: center;
-  gap: 14px;
-  animation: toast-fade 4s linear forwards;
-}
-
-/* ==========================================================================
-   FIXED THEMING & CORRECTED BROWSER-COMPATIBLE EMBEDDED SVGs
-   ========================================================================== */
-
-/* Success Theme: Green Bar + Checkmark Icon */
-.toast-success {
-  --theme-color: var(--color-success);
-  --toast-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2310b981' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M4.5 12.75l6 6 9-13.5'/%3E%3C/svg%3E");
-}
-
-/* Error Theme: Red Bar + Cross/X Icon */
-.toast-error {
-  --theme-color: var(--color-error);
-  --toast-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23ef4444' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12'/%3E%3C/svg%3E");
-}
-
-/* Warning Theme: Orange/Yellow Bar + Exclamation Icon */
-.toast-warn {
-  --theme-color: var(--color-warning);
-  --toast-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23f59e0b' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z'/%3E%3C/svg%3E");
-}
-
-.toast-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  background-image: var(--toast-svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* ==========================================================================
-   TIMELINES & INTERACTIVE CONTROLS
-   ========================================================================== */
-
-.toast-item:hover,
-.toast-item:hover .progress-bar {
-  animation-play-state: paused;
-}
-
-.progress-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  background-color: var(--theme-color);
-  width: 100%;
-  transform-origin: left;
-  animation: progress-drain 4s linear forwards;
-}
-
-.toast-message {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
-  word-break: break-word; /* Allows long messages to wrap text downwards safely */
-}
-
-.toast-close-btn {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: #64748b;
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 4px;
-  transition: color 0.2s ease;
-}
-
-.toast-close-btn:hover {
-  color: #ffffff;
-}
-
-.toast-item.toast-exiting {
-  animation: toast-exit-forced 0.3s ease-in forwards !important;
-}
-
-.toast-exiting .progress-bar {
-  animation: none !important;
-  transform: scaleX(0);
-}
-
-@keyframes toast-fade {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.95);
-  }
-  6% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  94% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-20px) scale(0.95);
-  }
-}
-
-@keyframes toast-exit-forced {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.95);
-  }
-}
-
-@keyframes progress-drain {
-  0% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(0);
   }
 }
