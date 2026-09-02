@@ -383,6 +383,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
   display: none;
 }
 
+/* Here begins my css code and is not part of the reset */
 /* global vars*/
 :root {
   /* colors generated using coolors.co */
@@ -417,11 +418,13 @@ body {
   color: var(--color-primary-text);
 }
 
+main {
+  height: 100dvh;
+}
+
 /* component specific styling */
 /* navbar */
 header {
-  margin-bottom: 4rem;
-
   nav {
     --inset-margin: 1rem;
     position: fixed;
@@ -451,6 +454,11 @@ header {
     ul:last-child {
       margin-right: var(--inset-margin);
     }
+  }
+
+  /* if there is not a hero then apply margin */
+  &:not(:has(.hero)) {
+    margin-bottom: 4rem;
   }
 }
 
