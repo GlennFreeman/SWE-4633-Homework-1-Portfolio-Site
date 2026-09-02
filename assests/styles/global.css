@@ -763,6 +763,7 @@ footer {
 }
 
 /* form stuff */
+/* if there is a form as the direct decendent of the main tag */
 main:has(> form) {
   display: flex;
   justify-content: center;
