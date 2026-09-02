@@ -769,7 +769,7 @@ footer {
 
 .hero {
   height: 100vh;
-  background-image: url(/assests/images/hero.webp);
+  background-image: url(../images/hero.webp);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -809,7 +809,7 @@ main:has(> form) {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(/assests/images/horizon.png);
+  background-image: url(../images/horizon.png);
   background-position: center;
 }
 
