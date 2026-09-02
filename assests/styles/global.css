@@ -399,6 +399,7 @@ Make elements with the HTML hidden attribute stay hidden by default.
   --color-primary-text: oklch(from var(--color-primary) calc(l + 0.35) c h);
   --color-accent-text: oklch(from var(--color-accent) calc(l + 0.35) c h);
   --color-accent-darker: oklch(from var(--color-accent) calc(l - 0.15) c h);
+  --color-accent-lighter: oklch(from var(--color-accent) calc(l + 0.5) c h);
   --color-background-darker: oklch(
     from var(--color-background-2) calc(l - 0.15) c h
   );
@@ -432,7 +433,7 @@ header {
     left: 0;
     z-index: 1000;
     width: 100%;
-    height: auto;
+    height: 4rem;
     display: flex;
     justify-content: space-between;
     background: linear-gradient(
@@ -486,10 +487,18 @@ footer {
     display: flex;
     align-items: center;
 
+    ul {
+      display: flex;
+    }
+
     li {
       padding: 0 0.5rem;
       display: inline-block;
     }
+  }
+
+  .mail {
+    margin-top: 0.25rem;
   }
 }
 
@@ -507,3 +516,59 @@ footer {
 }
 
 /* hero */
+.hero {
+  height: 100vh;
+  background-image: url(/assests/images/hero.webp);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  h1,
+  h2,
+  p {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 5rem;
+  }
+  h2 {
+    font-size: 3.5rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+    font-weight: lighter;
+  }
+  img {
+    border-radius: 100%;
+    border: 0.25rem solid var(--color-primary);
+  }
+  p {
+    margin-top: 1rem;
+  }
+}
+
+.glass {
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.125) 29%,
+    rgba(235, 241, 242, 0.15) 30%,
+    rgba(227, 227, 227, 0.075) 35%
+  );
+  backdrop-filter: blur(7px) saturate(200%);
+}
+
+/* card */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 0.0625rem solid var(--color-accent-lighter);
+  img {
+    max-width: fit-content;
+  }
+}
