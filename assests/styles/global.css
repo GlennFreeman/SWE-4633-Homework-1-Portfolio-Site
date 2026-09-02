@@ -403,6 +403,9 @@ Make elements with the HTML hidden attribute stay hidden by default.
   --color-background-darker: oklch(
     from var(--color-background-2) calc(l - 0.15) c h
   );
+  --color-background-lighter: oklch(
+    from var(--color-background-2) calc(l + 0.15) c h
+  );
 }
 
 /* general styling */
@@ -575,6 +578,60 @@ footer {
   border: 0.0625rem solid var(--color-accent-lighter);
   img {
     max-width: fit-content;
+  }
+}
+
+/* form stuff */
+
+form {
+  h2 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1rem;
+    color: var(--color-accent-text);
+    margin-top: -8px;
+    margin-bottom: 20px;
+  }
+  section {
+    display: flex;
+    flex-direction: column;
+  }
+  textarea {
+    field-sizing: content;
+    min-height: 2lh;
+    max-height: 10lh;
+    min-width: 50ch;
+    max-width: 50ch;
+    padding: 0 2ch;
+    background: var(--color-background-lighter);
+  }
+  fieldset {
+    border: 1px solid var(--color-accent);
+    padding: 0.5rem 1rem 1rem 1rem;
+    margin: 0.25rem 0;
+    input,
+    select {
+      width: 100%;
+      padding: 0 2ch;
+      background: var(--color-background-lighter);
+    }
+    input,
+    select,
+    textarea::placeholder,
+    input::placeholder {
+      color: var(--color-primary-text);
+    }
+  }
+  legend {
+    padding: 0 0.5rem;
+  }
+  .network-toggle {
+    background: var(--color-background-lighter);
+    margin: 0.5rem 0;
+    padding: 0.125rem 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid red;
   }
 }
 

@@ -59,108 +59,77 @@
 
     <main>
       <!-- Interactive Contact Us Form Wrapper -->
-      <form id="contact-form" onsubmit="event.preventDefault()" novalidate>
+      <form
+        id="contact-form"
+        onsubmit="event.preventDefault()"
+        novalidate
+        class="card"
+      >
         <h2>Contact Our Team</h2>
-        <p
-          style="
-            font-size: 13px;
-            color: #64748b;
-            margin-top: -8px;
-            margin-bottom: 20px;
-          "
-        >
+        <p>
           Have questions? Drop us a line below and we will get back to you
           shortly.
         </p>
+        <section>
+          <fieldset>
+            <legend>Full Name</legend>
+            <input
+              type="text"
+              id="username"
+              required
+              minlength="3"
+              placeholder="Jane Doe"
+            />
+          </fieldset>
 
-        <div class="form-group">
-          <label for="username">Full Name *</label>
-          <input
-            type="text"
-            id="username"
-            required
-            minlength="3"
-            placeholder="Jane Doe"
-          />
-        </div>
+          <fieldset>
+            <legend>Email Address</legend>
+            <input
+              type="email"
+              id="useremail"
+              required
+              placeholder="example@example.com"
+            />
+          </fieldset>
 
-        <div class="form-group">
-          <label for="useremail">Email Address *</label>
-          <input
-            type="email"
-            id="useremail"
-            required
-            placeholder="jane@example.com"
-          />
-        </div>
+          <fieldset>
+            <legend>What can we help you with?</legend>
+            <select id="inquiry-subject" required>
+              <option value="" disabled selected>Select an option...</option>
+              <option value="support">Technical Support</option>
+              <option value="billing">Billing & Sales</option>
+              <option value="feedback">General Feedback</option>
+            </select>
+          </fieldset>
 
-        <div class="form-group">
-          <label for="inquiry-subject">What can we help you with? *</label>
-          <select
-            id="inquiry-subject"
-            required
-            style="
-              width: 100%;
-              padding: 10px;
-              border: 1px solid #cbd5e1;
-              border-radius: 6px;
-              box-sizing: border-box;
-              background: white;
-            "
-          >
-            <option value="" disabled selected>Select an option...</option>
-            <option value="support">Technical Support</option>
-            <option value="billing">Billing & Sales</option>
-            <option value="feedback">General Feedback</option>
-          </select>
-        </div>
+          <fieldset>
+            <legend>Your Message</legend>
+            <textarea
+              id="user-message"
+              required
+              minlength="10"
+              placeholder="Type your message here (minimum 10 characters)..."
+            ></textarea>
+          </fieldset>
 
-        <div class="form-group">
-          <label for="user-message">Your Message *</label>
-          <textarea
-            id="user-message"
-            required
-            minlength="10"
-            rows="4"
-            placeholder="Type your message here (minimum 10 characters)..."
-            style="
-              width: 100%;
-              padding: 10px;
-              border: 1px solid #cbd5e1;
-              border-radius: 6px;
-              box-sizing: border-box;
-              font-family: sans-serif;
-              resize: vertical;
-            "
-          ></textarea>
-        </div>
+          <!-- Simulated Server Switcher (For Testing Layouts easily) -->
+          <div class="form-group network-toggle">
+            <label
+              style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: normal;
+                cursor: pointer;
+              "
+            >
+              <input type="checkbox" id="simulate-offline" /> Force Server
+              Offline (Triggers Warning)
+            </label>
+          </div>
+        </section>
 
-        <!-- Simulated Server Switcher (For Testing Layouts easily) -->
-        <div
-          class="form-group network-toggle"
-          style="
-            background: #f1f5f9;
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 13px;
-            margin-bottom: 16px;
-          "
-        >
-          <label
-            style="
-              display: flex;
-              align-items: center;
-              gap: 8px;
-              font-weight: normal;
-              cursor: pointer;
-            "
-          >
-            <input type="checkbox" id="simulate-offline" /> Force Server Offline
-            (Triggers Warning)
-          </label>
-        </div>
-
-        <button type="submit">Send Message</button>
+        <button type="submit" class="button">Send Message</button>
       </form>
       <!-- Container slot for incoming alerts -->
       <div id="toast-container"></div>
