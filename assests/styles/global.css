@@ -617,9 +617,9 @@ p {
 
 main {
   min-height: 100dvh;
-  display: grid;
+  /* display: grid;
   grid-template-rows: auto 1fr auto;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr); */
 }
 
 /* page formatting */
@@ -641,6 +641,7 @@ main {
 
   h3 {
     font-size: 2rem;
+    font-weight: bold;
   }
 
   p {
