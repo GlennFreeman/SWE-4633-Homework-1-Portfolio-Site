@@ -834,6 +834,10 @@ footer {
   li {
     padding-top: 0.125rem;
   }
+  em {
+    color: var(--color-accent);
+    padding-left: 0.125rem;
+  }
 }
 
 .flex-basic {
