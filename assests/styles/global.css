@@ -620,34 +620,33 @@ main {
 }
 
 /* page formatting */
-.about {
+main {
   margin: 0 2rem;
-  h1 {
+  & > h1 {
     font-size: 6rem;
     font-weight: bold;
     margin-left: -0.5rem;
     line-height: 1.1;
   }
 
-  h2 {
+  & > h2 {
     font-size: 3rem;
     font-weight: lighter;
     margin-bottom: 2rem;
     line-height: 1;
+    em {
+      color: var(--color-accent);
+    }
   }
 
-  h3 {
+  & > h3 {
     font-size: 2rem;
     font-weight: bold;
   }
 
-  p {
+  & > p {
     font-size: 1.125rem;
     margin-bottom: 1rem;
-  }
-
-  em {
-    color: var(--color-accent);
   }
 }
 
