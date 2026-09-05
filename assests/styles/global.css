@@ -637,31 +637,55 @@ main {
     em {
       color: var(--color-accent);
     }
+    a {
+      text-decoration: underline;
+      text-decoration-skip-ink: none;
+      text-underline-offset: 2px;
+      text-decoration-thickness: 1px;
+    }
   }
 
   & > h3 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  & > h4 {
     font-size: 2rem;
     font-weight: bold;
+  }
+
+  & > h5 {
+    font-size: 1.5rem;
+  }
+
+  & > h6 {
+    font-size: 1.5 rem;
   }
 
   & > p {
     font-size: 1.125rem;
     margin-bottom: 1rem;
   }
+  & > section {
+    display: flex;
+    gap: 2rem;
+  }
 }
 
 /* component specific styling */
 /* navbar */
 header {
-  margin-bottom: 4rem;
+  --header-size: 4rem;
+  --inset-margin: 1rem;
+  margin-bottom: var(--header-size);
   nav {
-    --inset-margin: 1rem;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
     width: 100%;
-    height: 4rem;
+    height: var(--header-size);
     display: flex;
     justify-content: space-between;
     background: linear-gradient(
@@ -702,6 +726,7 @@ footer {
 
     img {
       height: 2.5rem;
+      width: 2.5rem;
       aspect-ratio: 1/1;
       border-radius: 3rem;
       corner-shape: squircle;
@@ -766,6 +791,42 @@ footer {
   img {
     max-width: fit-content;
   }
+}
+
+.card-left {
+  background-color: var(--color-background-darker);
+  display: flex;
+  flex-direction: column;
+  width: 35dvw;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 0.0625rem solid var(--color-accent-lighter);
+  h4 {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 0.9;
+    text-box: trim-both;
+  }
+  h5 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  h6 {
+    color: var(--color-accent);
+    font-size: 1.5rem;
+  }
+  ul {
+    list-style-type: square;
+    padding: 0.25rem 0 0 1.5rem;
+  }
+  li {
+    padding-top: 0.125rem;
+  }
+}
+
+.flex-basic {
+  display: flex;
+  gap: 1rem;
 }
 
 .hero {
