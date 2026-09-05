@@ -621,55 +621,58 @@ main {
 
 /* page formatting */
 main {
-  margin: 0 2rem;
-  & > h1 {
-    font-size: 6rem;
-    font-weight: bold;
-    margin-left: -0.5rem;
-    line-height: 1.1;
-  }
+  & > article {
+    margin: 0 2rem;
 
-  & > h2 {
-    font-size: 3rem;
-    font-weight: lighter;
-    margin-bottom: 2rem;
-    line-height: 1;
-    em {
-      color: var(--color-accent);
+    & > h1 {
+      font-size: 6rem;
+      font-weight: bold;
+      margin-left: -0.5rem;
+      line-height: 1.1;
     }
-    a {
-      text-decoration: underline;
-      text-decoration-skip-ink: none;
-      text-underline-offset: 2px;
-      text-decoration-thickness: 1px;
+
+    & > h2 {
+      font-size: 3rem;
+      font-weight: lighter;
+      margin-bottom: 2rem;
+      line-height: 1;
+      em {
+        color: var(--color-accent);
+      }
+      a {
+        text-decoration: underline;
+        text-decoration-skip-ink: none;
+        text-underline-offset: 2px;
+        text-decoration-thickness: 1px;
+      }
     }
-  }
 
-  & > h3 {
-    font-size: 3rem;
-    font-weight: bold;
-  }
+    & > h3 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
 
-  & > h4 {
-    font-size: 2rem;
-    font-weight: bold;
-  }
+    & > h4 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
 
-  & > h5 {
-    font-size: 1.5rem;
-  }
+    & > h5 {
+      font-size: 1.5rem;
+    }
 
-  & > h6 {
-    font-size: 1.5 rem;
-  }
+    & > h6 {
+      font-size: 1.5 rem;
+    }
 
-  & > p {
-    font-size: 1.125rem;
-    margin-bottom: 1rem;
-  }
-  & > section {
-    display: flex;
-    gap: 2rem;
+    & > p {
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+    }
+    & > section {
+      display: flex;
+      gap: 2rem;
+    }
   }
 }
 
@@ -779,6 +782,10 @@ footer {
   border: var(--border-width) solid var(--color-accent-lighter);
 }
 
+.link-card {
+  display: flex;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -797,10 +804,15 @@ footer {
   background-color: var(--color-background-darker);
   display: flex;
   flex-direction: column;
-  width: 35dvw;
+  width: 45dvw;
   padding: 1rem;
   border-radius: 1rem;
   border: 0.0625rem solid var(--color-accent-lighter);
+  &:hover,
+  &:focus {
+    transform: scale(1.04);
+    background-color: var(--color-background-lighter);
+  }
   h4 {
     font-size: 2rem;
     font-weight: bold;
@@ -826,6 +838,7 @@ footer {
 
 .flex-basic {
   display: flex;
+  align-items: end;
   gap: 1rem;
 }
 
