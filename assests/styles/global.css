@@ -614,7 +614,8 @@ h6 {
   text-wrap: balance;
 }
 
-p {
+p,
+li {
   text-wrap: pretty;
 }
 
@@ -625,18 +626,18 @@ main {
 /* page formatting */
 main {
   & > article {
-    margin: 0 2rem;
+    margin: 0 15%;
     display: flex;
     flex-direction: column;
-    & > h1 {
+    h1 {
       font-size: 6rem;
       font-weight: bold;
       margin-left: -0.5rem;
       line-height: 1.1;
     }
 
-    & > h2 {
-      font-size: 3rem;
+    h2 {
+      font-size: 2.3rem;
       font-weight: lighter;
       margin-bottom: 2rem;
       line-height: 1;
@@ -656,13 +657,17 @@ main {
     }
 
     & > h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
       font-size: 3rem;
       font-weight: bold;
+      line-height: 1.1;
     }
 
-    & > h4 {
+    h4 {
       font-size: 2rem;
       font-weight: bold;
+      margin-bottom: 0.5rem;
     }
 
     & > h5 {
@@ -805,6 +810,7 @@ footer {
 }
 
 .button {
+  max-width: fit-content;
   padding: 1rem 0.5rem;
   border-radius: 0.5rem;
   border: var(--border-width) solid transparent;
@@ -820,12 +826,62 @@ footer {
   border: var(--border-width) solid var(--color-accent-lighter);
 }
 
+.block {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
 .link-card {
   display: flex;
   & > .card-left:hover,
   & > .card-left:focus {
     transform: scale(1.04);
     background-color: var(--color-accent-darker-darker);
+  }
+}
+
+.link-external {
+  color: var(--color-accent);
+  text-decoration: underline;
+  &:hover,
+  &:focus {
+    color: var(--color-accent-lighter);
+  }
+  &::after {
+    content: " ↗";
+    color: inherit;
+  }
+}
+
+.column-2 {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 2.5rem;
+  h3 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-box: trim-both;
+    line-height: 1.1;
+    text-align: right;
   }
 }
 
@@ -847,7 +903,7 @@ footer {
   background-color: var(--color-background-darker);
   display: flex;
   flex-direction: column;
-  width: 45dvw;
+  width: 35dvw;
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 1rem;
