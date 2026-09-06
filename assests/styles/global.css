@@ -742,11 +742,15 @@ header {
     );
     backdrop-filter: blur(30px);
     box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.3);
-
     li {
       display: inline-block;
     }
-
+    img {
+      aspect-ratio: 1/1;
+      height: 1.5rem;
+      border-radius: 1rem;
+      corner-shape: squircle;
+    }
     & > a {
       margin-left: var(--inset-margin);
     }
@@ -810,6 +814,9 @@ footer {
 }
 
 .button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   max-width: fit-content;
   padding: 1rem 0.5rem;
   border-radius: 0.5rem;
@@ -843,6 +850,21 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.n-img {
+  background-image: url("../images/N.webp");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  h1,
+  h2 {
+    color: var(--color-primary-text);
+    text-shadow:
+      0 2px 1px var(--color-primary-darker),
+      0 -2px 1px var(--color-primary-darker),
+      2px 0 1px var(--color-primary-darker),
+      -2px 0 1px var(--color-primary-darker);
+  }
 }
 
 .link {
@@ -899,6 +921,17 @@ footer {
   border: 0.0625rem solid var(--color-accent-lighter);
   img {
     max-width: fit-content;
+  }
+}
+
+.card-project {
+  h2 {
+  }
+  p {
+  }
+  ul {
+    li {
+    }
   }
 }
 
