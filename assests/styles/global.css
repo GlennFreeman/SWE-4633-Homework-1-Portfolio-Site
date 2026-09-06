@@ -626,7 +626,8 @@ main {
 main {
   & > article {
     margin: 0 2rem;
-
+    display: flex;
+    flex-direction: column;
     & > h1 {
       font-size: 6rem;
       font-weight: bold;
@@ -821,6 +822,11 @@ footer {
 
 .link-card {
   display: flex;
+  & > .card-left:hover,
+  & > .card-left:focus {
+    transform: scale(1.04);
+    background-color: var(--color-accent-darker-darker);
+  }
 }
 
 .card {
@@ -843,13 +849,9 @@ footer {
   flex-direction: column;
   width: 45dvw;
   padding: 1rem;
+  margin-bottom: 1rem;
   border-radius: 1rem;
   border: 0.0625rem solid var(--color-accent-lighter);
-  &:hover,
-  &:focus {
-    transform: scale(1.04);
-    background-color: var(--color-accent-darker-darker);
-  }
   h4 {
     font-size: 2rem;
     font-weight: bold;
