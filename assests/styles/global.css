@@ -856,6 +856,7 @@ footer {
   background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
+  margin-bottom: 1rem;
   h1,
   h2 {
     color: var(--color-primary-text);
