@@ -583,6 +583,9 @@ Make elements with the HTML hidden attribute stay hidden by default.
   --color-primary-text-lighter: oklch(
     from var(--color-primary) calc(l + 0.35) calc(c - 0.05) h
   );
+  --color-accent-darker-darker: oklch(
+    from var(--color-accent-darker) calc(l - 0.35) calc(c - 0.05) h
+  );
 
   /* values */
   --border-width: 2px;
@@ -644,6 +647,10 @@ main {
         text-decoration-skip-ink: none;
         text-underline-offset: 2px;
         text-decoration-thickness: 1px;
+        &:hover,
+        &:focus {
+          color: var(--color-accent);
+        }
       }
     }
 
@@ -669,9 +676,34 @@ main {
       font-size: 1.125rem;
       margin-bottom: 1rem;
     }
+    li {
+      text-wrap: pretty;
+    }
     & > section {
       display: flex;
       gap: 2rem;
+      & > ul {
+        padding-left: 0.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        & > li {
+          font-size: 1.125rem;
+          background-color: var(--color-background-darker);
+          padding: 0.75rem;
+          text-box: trim-both;
+          border-radius: 1rem;
+          corner-shape: squircle;
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
+
+          &:hover {
+            transform: translateY(-0.25rem);
+            color: var(--color-accent);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
     }
   }
 }
@@ -811,7 +843,7 @@ footer {
   &:hover,
   &:focus {
     transform: scale(1.04);
-    background-color: var(--color-background-lighter);
+    background-color: var(--color-accent-darker-darker);
   }
   h4 {
     font-size: 2rem;
