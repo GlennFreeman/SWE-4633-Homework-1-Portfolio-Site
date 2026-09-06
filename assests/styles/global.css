@@ -679,6 +679,11 @@ main {
     li {
       text-wrap: pretty;
     }
+    code {
+      background-color: var(--color-background-lighter);
+      padding: 0 0.25rem;
+      border-radius: 0.25rem;
+    }
     & > section {
       display: flex;
       gap: 2rem;
