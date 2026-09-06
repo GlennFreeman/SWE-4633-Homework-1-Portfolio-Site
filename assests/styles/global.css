@@ -926,12 +926,55 @@ footer {
 }
 
 .card-project {
-  h2 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  background-color: var(--color-background-darker);
+  .image-container {
+    border-radius: 1rem 1rem 0 0;
+    height: 10rem;
+    overflow: hidden;
+    img {
+      aspect-ratio: 16/9;
+    }
   }
-  p {
-  }
-  ul {
-    li {
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1rem;
+    .header-row {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    h2 {
+      font-size: 3rem;
+      font-weight: bold;
+      text-box: trim-both;
+      margin: 0;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      li {
+        font-size: 1.125rem;
+        background-color: var(--color-background-1);
+        padding: 0.75rem;
+        text-box: trim-both;
+        border-radius: 1rem;
+        corner-shape: squircle;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.75);
+
+        &:hover {
+          transform: translateY(-0.25rem);
+          color: var(--color-accent);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+      }
     }
   }
 }
