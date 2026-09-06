@@ -848,6 +848,9 @@ footer {
 .link {
   color: var(--color-accent);
   text-decoration: underline;
+  &:hover {
+    color: var(--color-accent-lighter);
+  }
 }
 
 .link-card {
