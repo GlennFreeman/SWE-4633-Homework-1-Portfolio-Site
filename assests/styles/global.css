@@ -916,7 +916,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: fit-content;
+  max-width: 75%;
   padding: 1rem;
   border-radius: 1rem;
   border: 0.0625rem solid var(--color-accent-lighter);
@@ -1136,11 +1136,20 @@ form {
   }
 }
 
-.project-hero {
+.cognito {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.25)),
+    url("../images/cognito.png");
+}
+
+.jeopardy {
   background-image:
     linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.25)),
     url("../images/jeopardy.png");
-  height: 100dvh;
+}
+
+.project-hero {
+  min-height: 100dvh;
   h2 {
     font-size: 3rem;
     font-weight: lighter;
@@ -1153,6 +1162,8 @@ form {
   }
   p {
     font-size: 1.5rem;
+    text-align: center;
+    text-wrap: balance;
   }
   h1,
   p,
