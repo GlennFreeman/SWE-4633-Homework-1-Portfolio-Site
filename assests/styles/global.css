@@ -1021,6 +1021,11 @@ footer {
   gap: 1rem;
 }
 
+.list {
+  list-style-type: square;
+  margin-left: 1.25rem;
+}
+
 .hero {
   height: 100vh;
   background-image: url(../images/hero.webp);
@@ -1128,6 +1133,37 @@ form {
     padding: 0.125rem 0.75rem;
     border-radius: 1rem;
     border: 1px solid var(--color-error);
+  }
+}
+
+.project-hero {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.25)),
+    url("../images/jeopardy.png");
+  height: 100dvh;
+  h2 {
+    font-size: 3rem;
+    font-weight: lighter;
+    text-box: trim-both;
+  }
+  h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    text-box: trim-both;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  h1,
+  p,
+  ul {
+    margin-bottom: 1rem;
+  }
+  li {
+    font-size: 1.25rem;
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-background-1);
   }
 }
 
