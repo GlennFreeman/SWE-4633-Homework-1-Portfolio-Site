@@ -18,12 +18,12 @@ const Toast = {
   types: {
     success: { className: "toast-success" },
     error: { className: "toast-error" },
-    warn: { className: "toast-warn" }
+    warn: { className: "toast-warn" },
   },
 
   // Dynamic DOM query to guarantee container access across loading scripts
   getContainer() {
-    return document.getElementById('toast-container');
+    return document.getElementById("toast-container");
   },
 
   // Calculates real-time vertical offsets for varied height text blocks from the bottom up
@@ -31,11 +31,13 @@ const Toast = {
     const container = this.getContainer();
     if (!container) return;
 
-    const activeToasts = Array.from(container.querySelectorAll('.toast-item:not(.toast-exiting)'));
+    const activeToasts = Array.from(
+      container.querySelectorAll(".toast-item:not(.toast-exiting)"),
+    );
     let runningOffset = 0;
 
     activeToasts.reverse().forEach((toast) => {
-      toast.style.setProperty('--toast-offset', `${runningOffset}px`);
+      toast.style.setProperty("--toast-offset", `${runningOffset}px`);
       runningOffset += toast.getBoundingClientRect().height + TOAST_GAP;
     });
   },
@@ -43,7 +45,9 @@ const Toast = {
   show(type, message) {
     const container = this.getContainer();
     if (!container) {
-      console.error("Toast failed: #toast-container element was not found in the DOM.");
+      console.error(
+        "Toast failed: #toast-container element was not found in the DOM.",
+      );
       return;
     }
 
@@ -51,18 +55,23 @@ const Toast = {
     const config = this.types[type] || this.types.success;
 
     // Manage visible screen capacity limit cap (Graceful exit for the oldest toast)
-    const activeToasts = Array.from(container.querySelectorAll('.toast-item:not(.toast-exiting)'));
+    const activeToasts = Array.from(
+      container.querySelectorAll(".toast-item:not(.toast-exiting)"),
+    );
     if (activeToasts.length >= MAX_TOASTS) {
       // FIXED: Added [0] index accessor to target the specific individual node instead of the array object
       const oldest = activeToasts[0];
-      const currentOffset = parseInt(oldest.style.getPropertyValue('--toast-offset') || '0');
-      const forcedExitOffset = currentOffset + oldest.getBoundingClientRect().height + TOAST_GAP;
+      const currentOffset = parseInt(
+        oldest.style.getPropertyValue("--toast-offset") || "0",
+      );
+      const forcedExitOffset =
+        currentOffset + oldest.getBoundingClientRect().height + TOAST_GAP;
 
-      oldest.style.setProperty('--toast-offset', `${forcedExitOffset}px`);
-      oldest.classList.add('toast-exiting');
+      oldest.style.setProperty("--toast-offset", `${forcedExitOffset}px`);
+      oldest.classList.add("toast-exiting");
 
-      oldest.addEventListener('animationend', (e) => {
-        if (e.animationName === 'toast-exit-forced') {
+      oldest.addEventListener("animationend", (e) => {
+        if (e.animationName === "toast-exit-forced") {
           oldest.hidePopover();
           oldest.remove();
         }
@@ -70,8 +79,8 @@ const Toast = {
     }
 
     // Construct native popover markup footprint nodes
-    const toast = document.createElement('div');
-    toast.setAttribute('popover', 'manual');
+    const toast = document.createElement("div");
+    toast.setAttribute("popover", "manual");
     toast.className = `toast-item ${config.className}`;
     const id = `toast-node-${toastCount}`;
     toast.id = id;
@@ -104,41 +113,42 @@ const Toast = {
     };
 
     // Centralized single point of destruction for manual close buttons and auto-timeouts
-    toast.addEventListener('toggle', (e) => {
-      if (e.newState === 'closed') {
+    toast.addEventListener("toggle", (e) => {
+      if (e.newState === "closed") {
         clearTimeout(dismissTimeout);
         toast.remove();
         this.updatePositions();
       }
     });
 
-    toast.addEventListener('mouseenter', () => {
-      if (!toast.classList.contains('toast-exiting')) pauseTimer();
+    toast.addEventListener("mouseenter", () => {
+      if (!toast.classList.contains("toast-exiting")) pauseTimer();
     });
-    toast.addEventListener('mouseleave', () => {
-      if (!toast.classList.contains('toast-exiting')) startTimer();
+    toast.addEventListener("mouseleave", () => {
+      if (!toast.classList.contains("toast-exiting")) startTimer();
     });
 
     startTimer();
-  }
+  },
 };
 
 /* ==========================================================================
    2. Form Controller & Data Pipeline Subsystems
    ========================================================================== */
-window.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('contact-form');
-  const offlineCheckbox = document.getElementById('simulate-offline');
+window.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contact-form");
+  const offlineCheckbox = document.getElementById("simulate-offline");
 
   if (!form) return;
 
   // Generates a lightweight, deterministic fingerprint to distinguish form messages
   function generateFormHash(data) {
-    const sourceString = `${data.name.trim()}|${data.email.trim()}|${data.message.trim()}`.toLowerCase();
+    const sourceString =
+      `${data.name.trim()}|${data.email.trim()}|${data.message.trim()}`.toLowerCase();
     let hash = 0;
     for (let i = 0; i < sourceString.length; i++) {
       const chr = sourceString.charCodeAt(i);
-      hash = ((hash << 5) - hash) + chr;
+      hash = (hash << 5) - hash + chr;
       hash |= 0; // Convert to a signed 32-bit integer
     }
     return `form_hash_${Math.abs(hash)}`;
@@ -150,11 +160,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const storageKeys = Object.keys(localStorage);
     let purgedCount = 0;
 
-    storageKeys.forEach(key => {
-      if (key.startsWith('form_hash_')) {
+    storageKeys.forEach((key) => {
+      if (key.startsWith("form_hash_")) {
         try {
           const record = JSON.parse(localStorage.getItem(key));
-          if (record && record.date && (now - record.date > EXPIRATION_TIME_MS)) {
+          if (record && record.date && now - record.date > EXPIRATION_TIME_MS) {
             localStorage.removeItem(key);
             purgedCount++;
           }
@@ -165,33 +175,41 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     if (purgedCount > 0) {
-      console.log(`Sync System: Automatically cleaned ${purgedCount} expired form fingerprints from localStorage.`);
+      console.log(
+        `Sync System: Automatically cleaned ${purgedCount} expired form fingerprints from localStorage.`,
+      );
     }
   }
 
-  form.addEventListener('submit', async (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     // STEP 1: VALIDITY CHECK FIRST (Triggers Red Error Alert if inputs fail constraints)
     if (!form.checkValidity()) {
-      Toast.show('error', 'Form submission failed! Please review your entries and complete all mandatory fields correctly.');
+      Toast.show(
+        "error",
+        "Form submission failed! Please review your entries and complete all mandatory fields correctly.",
+      );
       return;
     }
 
     // STEP 2: SAFE EXTRACTION (Inputs are now verified structurally healthy)
     const formData = {
-      name: document.getElementById('username').value,
-      email: document.getElementById('useremail').value,
-      subject: document.getElementById('inquiry-subject').value,
-      message: document.getElementById('user-message').value,
-      timestamp: Date.now()
+      name: document.getElementById("username").value,
+      email: document.getElementById("useremail").value,
+      subject: document.getElementById("inquiry-subject").value,
+      message: document.getElementById("user-message").value,
+      timestamp: Date.now(),
     };
 
     // STEP 3: DUPLICATE CHECK (Triggers Yellow Warning Style Toast)
     const submissionFingerprint = generateFormHash(formData);
     if (localStorage.getItem(submissionFingerprint)) {
-      Toast.show('warn', 'You have already submitted this exact inquiry message! Duplicate submission blocked.');
+      Toast.show(
+        "warn",
+        "You have already submitted this exact inquiry message! Duplicate submission blocked.",
+      );
       return;
     }
 
@@ -205,44 +223,69 @@ window.addEventListener('DOMContentLoaded', () => {
       }
 
       // Simulate standard client-to-server request processing latency
-      await new Promise(resolve => setTimeout(resolve, 350));
+      await new Promise((resolve) => setTimeout(resolve, 350));
 
       // Persist success hash to local storage permanently to block upcoming duplicate clicks
-      localStorage.setItem(submissionFingerprint, JSON.stringify({ status: 'sent', date: formData.timestamp }));
+      localStorage.setItem(
+        submissionFingerprint,
+        JSON.stringify({ status: "sent", date: formData.timestamp }),
+      );
 
       // Green Success State
-      Toast.show('success', `Thank you, ${formData.name}! Your contact inquiry has been recieved.`);
+      Toast.show(
+        "success",
+        `Thank you, ${formData.name}! Your contact inquiry has been received.`,
+      );
       form.reset();
-
     } catch (error) {
       // STEP 4: NETWORK FAILURE FALLBACK ROUTING (Triggers Yellow Warning Style Toast)
-      const offlineQueue = JSON.parse(localStorage.getItem('offline_contact_queue') || '[]');
-      const isAlreadyQueued = offlineQueue.some(item => generateFormHash(item) === submissionFingerprint);
+      const offlineQueue = JSON.parse(
+        localStorage.getItem("offline_contact_queue") || "[]",
+      );
+      const isAlreadyQueued = offlineQueue.some(
+        (item) => generateFormHash(item) === submissionFingerprint,
+      );
 
       if (!isAlreadyQueued) {
         offlineQueue.push(formData);
-        localStorage.setItem('offline_contact_queue', JSON.stringify(offlineQueue));
+        localStorage.setItem(
+          "offline_contact_queue",
+          JSON.stringify(offlineQueue),
+        );
         // Flag local cache profile status index to block double submissions while sitting offline
-        localStorage.setItem(submissionFingerprint, JSON.stringify({ status: 'queued', date: formData.timestamp }));
+        localStorage.setItem(
+          submissionFingerprint,
+          JSON.stringify({ status: "queued", date: formData.timestamp }),
+        );
       }
 
       // Yellow Warning State for network dropouts
-      Toast.show('warn', 'Connection failed! Your form data has been safely saved locally. This form will automatically retry when online.');
-      console.warn("Sync Pipeline updated offline queue record entries:", error);
+      Toast.show(
+        "warn",
+        "Connection failed! Your form data has been safely saved locally. This form will automatically retry when online.",
+      );
+      console.warn(
+        "Sync Pipeline updated offline queue record entries:",
+        error,
+      );
     }
   });
 
   /* ==========================================================================
      3. Self-Healing Background Network Sync Engine
      ========================================================================== */
-   async function processOfflineQueue() {
+  async function processOfflineQueue() {
     // Avoid running automated sync polls if developer offline toggle is verified active
     if (offlineCheckbox && offlineCheckbox.checked) return;
 
-    const offlineQueue = JSON.parse(localStorage.getItem('offline_contact_queue') || '[]');
+    const offlineQueue = JSON.parse(
+      localStorage.getItem("offline_contact_queue") || "[]",
+    );
     if (offlineQueue.length === 0) return;
 
-    console.log(`Sync System: Processing ${offlineQueue.length} queued contact messages...`);
+    console.log(
+      `Sync System: Processing ${offlineQueue.length} queued contact messages...`,
+    );
 
     // CORRECTED: Target the specific oldest entry element index instead of the whole array mapping
     const currentItem = offlineQueue[0];
@@ -259,21 +302,32 @@ window.addEventListener('DOMContentLoaded', () => {
       */
 
       // Simulated background network processing wait step
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
       // Successfully processed oldest element; pop array queues safely
       offlineQueue.shift();
-      localStorage.setItem('offline_contact_queue', JSON.stringify(offlineQueue));
+      localStorage.setItem(
+        "offline_contact_queue",
+        JSON.stringify(offlineQueue),
+      );
 
       // Transition mapping values flags from 'queued' to 'sent'
       const itemFingerprint = generateFormHash(currentItem);
-      localStorage.setItem(itemFingerprint, JSON.stringify({ status: 'sent', date: Date.now() }));
+      localStorage.setItem(
+        itemFingerprint,
+        JSON.stringify({ status: "sent", date: Date.now() }),
+      );
 
       // Alert active user that background synchronization finished safely
-      Toast.show('success', `Background Sync Complete! Queued message from ${currentItem.name} has been processed.`);
-
+      Toast.show(
+        "success",
+        `Background Sync Complete! Queued message from ${currentItem.name} has been processed.`,
+      );
     } catch (err) {
-      console.log("Background synchronization loop resting, destination host unreachable.", err);
+      console.log(
+        "Background synchronization loop resting, destination host unreachable.",
+        err,
+      );
     }
   }
-})
+});
